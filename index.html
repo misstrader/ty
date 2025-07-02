@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWT Concept - توانمندسازی سفر معاملاتی شما</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --dark-bg: #0a0a1a;
+            --card-bg: #12122a;
+            --text-color: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--neon-blue);
+            margin-bottom: 30px;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .founder {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: var(--neon-blue);
+        }
+        
+        .services-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        
+        .service-card {
+            width: 45%;
+            min-width: 300px;
+            background: var(--card-bg);
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 252, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .service-card {
+                width: 100%;
+            }
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 252, 0.5);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .content-section {
+            background: var(--card-bg);
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 0 20px rgba(0, 255, 252, 0.3);
+            line-height: 1.8;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .accordion {
+            background: var(--card-bg);
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 252, 0.3);
+        }
+        
+        .accordion-header {
+            padding: 15px 20px;
+            background: rgba(0, 255, 252, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+        
+        .accordion-header i {
+            color: var(--neon-blue);
+            margin-left: 10px;
+        }
+        
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion.active .accordion-content {
+            max-height: 500px;
+            padding: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: rgba(0, 255, 252, 0.1);
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            margin-left: 15px;
+        }
+        
+        .language-switcher, .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-btn, .auth-btn {
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .language-btn:hover, .auth-btn:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+        }
+        
+        .auth-btn.register {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+        }
+        
+        .auth-btn.register:hover {
+            background: transparent;
+            color: var(--neon-blue);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 30px var(--neon-blue);
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--neon-blue);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+        
+        .form-submit {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .form-submit:hover {
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 350px;
+            background: var(--card-bg);
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 252, 0.5);
+            z-index: 100;
+            display: none;
+        }
+        
+        .chat-header {
+            background: rgba(0, 255, 252, 0.1);
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .chat-body {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        
+        .received {
+            background: rgba(0, 255, 252, 0.1);
+            margin-right: auto;
+            border-top-right-radius: 0;
+        }
+        
+        .sent {
+            background: rgba(0, 255, 252, 0.3);
+            margin-left: auto;
+            border-top-left-radius: 0;
+        }
+        
+        .chat-footer {
+            padding: 15px;
+            display: flex;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+        
+        .chat-send {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            border: none;
+            padding: 10px 15px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 252, 0.7);
+            z-index: 99;
+        }
+        
+        .chat-toggle i {
+            font-size: 1.5rem;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px var(--neon-blue);
+            }
+            to {
+                text-shadow: 0 0 15px var(--neon-blue), 0 0 20px var(--neon-blue);
+            }
+        }
+        
+        /* English version styles */
+        body.english {
+            direction: ltr;
+        }
+        
+        body.english .accordion-header i {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        
+        body.english .contact-item i {
+            margin-left: 0;
+            margin-right: 15px;
+        }
+        
+        body.english .language-btn, 
+        body.english .auth-btn {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        
+        body.english .chat-container {
+            left: auto;
+            right: 20px;
+        }
+        
+        body.english .chat-toggle {
+            left: auto;
+            right: 20px;
+        }
+        
+        body.english .chat-send {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+        
+        body.english .close-btn {
+            left: auto;
+            right: 10px;
+        }
+        
+        body.english .message.received {
+            margin-right: 0;
+            margin-left: auto;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 0;
+        }
+        
+        body.english .message.sent {
+            margin-left: 0;
+            margin-right: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 0;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--neon-blue);
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .form-submit.loading {
+            position: relative;
+        }
+        
+        .form-submit.loading::after {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--dark-bg);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        /* Success message */
+        .success-message {
+            display: none;
+            color: #0f0;
+            text-align: center;
+            margin-top: 20px;
+            animation: glow 1.5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="language-switcher">
+                <button class="language-btn" id="lang-fa">فارسی</button>
+                <button class="language-btn" id="lang-en">English</button>
+            </div>
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn">ورود</button>
+                <button class="auth-btn register register-btn">ثبت نام</button>
+            </div>
+        </header>
+        
+        <div class="logo-container">
+            <img src="https://i.ibb.co/VYvLqQk/mwt-logo.png" alt="MWT Logo" class="logo">
+            <h1 class="title">توانمندسازی سفر معاملاتی شما</h1>
+            <p class="subtitle">Empowering your trade journey</p>
+            <h2 class="founder">بنیانگذار مفهوم MWT</h2>
+            <p class="subtitle">founder of MWT concept</p>
+        </div>
+        
+        <div class="services-container">
+            <div class="service-card" id="about-us">
+                <div class="service-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="service-title">درباره ما</h3>
+                <p>اطلاعات بیشتر درباره ما و تیم ما</p>
+            </div>
+            
+            <div class="service-card" id="our-services">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="service-title">خدمات ما</h3>
+                <p>خدمات حرفه‌ای ما در زمینه ترید و تحلیل</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <p id="motivational-text-1">
+                در دنیای پر از نوسان و فرصت‌های بی‌پایان بازارهای مالی، موفقیت تنها از آن کسانی است که جرئت می‌کنند قدم اول را بردارند، پشتکار دارند و همواره در مسیر یادگیری و رشد هستند. ترید کردن، هنر تحلیل و تصمیم‌گیری در لحظه‌های حساس است که می‌تواند زندگی شما را متحول کند.
+            </p>
+            <p id="motivational-text-2">
+                ما در کنار تحلیل تکنیکال و فاندامنتال، از قدرت استرولوژی مالی نیز بهره می‌بریم؛ دانشی که با بررسی موقعیت سیارات و تأثیرات آن‌ها بر احساسات جمعی بازار، به ما دیدگاهی عمیق‌تر و زمان‌بندی دقیق‌تری برای ورود و خروج می‌دهد. این ترکیب هوشمندانه از علم و هنر، می‌تواند شما را چند قدم جلوتر از بازار نگه دارد.
+            </p>
+            <p id="motivational-text-3">
+                امروز زمان آن است که ترس‌ها را کنار بگذارید و به سمت آینده‌ای روشن‌تر حرکت کنید.
+                با ما، آموزش ترید اسکلپی و روندی را به‌همراه نگاهی متفاوت از جنس کیهان تجربه می‌کنید.
+            </p>
+        </div>
+        
+        <div class="accordion">
+            <div class="accordion-header">
+                <span>پشتیبانی</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <span>@MWT_Support</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>09393807645</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion">
+            <div class="accordion-header">
+                <span>ارتباط با ما</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+                <div class="contact-item">
+                    <i class="fab fa-youtube"></i>
+                    <span>youtube.com/MWT_Concept</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <span>instagram.com/MWT_Concept</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@mwt-concept.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <span>چت آنلاین با پشتیبانی</span>
+                <i class="fas fa-times close-chat"></i>
+            </div>
+            <div class="chat-body" id="chat-messages">
+                <div class="message received">
+                    <p>سلام! چطور می‌تونم کمکتون کنم؟</p>
+                </div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" class="chat-input" placeholder="پیام خود را بنویسید...">
+                <button class="chat-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>ورود به حساب کاربری</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">ایمیل</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">رمز عبور</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="form-submit">ورود</button>
+                <div class="success-message" id="login-success"></div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>ثبت نام جدید</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-name">نام کامل</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">ایمیل</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">شماره تماس</label>
+                    <input type="tel" id="reg-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">رمز عبور</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm">تکرار رمز عبور</label>
+                    <input type="password" id="reg-confirm" required>
+                </div>
+                <button type="submit" class="form-submit">ثبت نام</button>
+                <div class="success-message" id="register-success"></div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Telegram Bot Token - جایگزینی با توکن ربات خودتان
+        const TELEGRAM_BOT_TOKEN = '7021856190:AAHeMgIGmTzBi0VsVKTMjvvcU9o3yKJlwEw';
+        // جایگزینی با Chat ID واقعی شما (عددی مثل 123456789)
+        const TELEGRAM_CHAT_ID = '1687469534';
+        
+        // تابع تست اتصال تلگرام
+        async function testTelegramConnection() {
+          try {
+            await sendToTelegram("✅ تست اتصال موفقیت‌آمیز بود - ربات فعال است");
+            console.log("اتصال به تلگرام موفقیت‌آمیز بود!");
+            return true;
+          } catch (error) {
+            console.error("خطا در اتصال به تلگرام:", error);
+            return false;
+          }
+        }
+        
+        // اجرای تست اتصال هنگام بارگذاری صفحه
+        window.addEventListener('DOMContentLoaded', async () => {
+          const isConnected = await testTelegramConnection();
+          if (!isConnected) {
+            console.warn("هشدار: اتصال به تلگرام برقرار نشد. لطفاً توکن و Chat ID را بررسی کنید.");
+          }
+        });
+
+        // Accordion functionality
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(accordion => {
+            const header = accordion.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                accordion.classList.toggle('active');
+                const icon = header.querySelector('i');
+                if (accordion.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Modal functionality
+        const loginBtn = document.querySelector('.login-btn');
+        const registerBtn = document.querySelector('.register-btn');
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const closeBtns = document.querySelectorAll('.close-btn');
+        
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+        
+        registerBtn.addEventListener('click', () => {
+            registerModal.style.display = 'flex';
+        });
+        
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+            });
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+        
+        // تابع ارسال پیام به تلگرام با استفاده از CORS Anywhere
+        async function sendToTelegram(message) {
+            const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+            const apiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(proxyUrl + apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to send message to Telegram');
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+                throw error;
+            }
+        }
+        
+        // Registration form
+        const registerForm = document.getElementById('register-form');
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const phone = document.getElementById('reg-phone').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm').value;
+            const registerSuccess = document.getElementById('register-success');
+            
+            if (password !== confirmPassword) {
+                alert('رمز عبور و تکرار آن مطابقت ندارند!');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = registerForm.querySelector('.form-submit');
+            submitBtn.classList.add('loading');
+            
+            try {
+                // Prepare Telegram message
+                const telegramMessage = `
+                    <b>ثبت نام جدید در MWT Concept</b>\n
+                    <b>نام:</b> ${name}\n
+                    <b>ایمیل:</b> ${email}\n
+                    <b>تلفن:</b> ${phone}\n
+                    <b>زمان:</b> ${new Date().toLocaleString('fa-IR')}
+                `;
+                
+                // Send to Telegram
+                await sendToTelegram(telegramMessage);
+                
+                // Show success message
+                registerSuccess.textContent = 'ثبت نام شما با موفقیت انجام شد! اطلاعات به مدیر ارسال شد.';
+                registerSuccess.style.display = 'block';
+                
+                // Reset form
+                registerForm.reset();
+                
+                // Hide modal after 3 seconds
+                setTimeout(() => {
+                    registerModal.style.display = 'none';
+                    registerSuccess.style.display = 'none';
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('ثبت نام انجام شد، اما ارسال پیام به مدیر با مشکل مواجه شد. لطفاً از طریق واتس‌اپ یا تلگرام با ما در ارتباط باشید.');
+            } finally {
+                submitBtn.classList.remove('loading');
+            }
+        });
+        
+        // Login form
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const loginSuccess = document.getElementById('login-success');
+            
+            // Show loading state
+            const submitBtn = loginForm.querySelector('.form-submit');
+            submitBtn.classList.add('loading');
+            
+            try {
+                // Prepare Telegram message
+                const telegramMessage = `
+                    <b>ورود کاربر به MWT Concept</b>\n
+                    <b>ایمیل:</b> ${email}\n
+                    <b>زمان:</b> ${new Date().toLocaleString('fa-IR')}
+                `;
+                
+                // Send to Telegram
+                await sendToTelegram(telegramMessage);
+                
+                // Show success message
+                loginSuccess.textContent = 'ورود شما با موفقیت انجام شد!';
+                loginSuccess.style.display = 'block';
+                
+                // Reset form
+                loginForm.reset();
+                
+                // Hide modal after 3 seconds
+                setTimeout(() => {
+                    loginModal.style.display = 'none';
+                    loginSuccess.style.display = 'none';
+                    isLoggedIn = true;
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('ورود انجام شد، اما ارسال پیام به مدیر با مشکل مواجه شد.');
+            } finally {
+                submitBtn.classList.remove('loading');
+            }
+        });
+        
+        // Chat functionality
+        const chatToggle = document.querySelector('.chat-toggle');
+        const chatContainer = document.querySelector('.chat-container');
+        const closeChat = document.querySelector('.close-chat');
+        const chatInput = document.querySelector('.chat-input');
+        const chatSend = document.querySelector('.chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+        
+        chatToggle.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+        });
+        
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add message to chat UI
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message sent';
+                messageElement.innerHTML = `<p>${message}</p>`;
+                chatMessages.appendChild(messageElement);
+                chatInput.value = '';
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                try {
+                    // Send message to Telegram
+                    await sendToTelegram(`پیام از چت آنلاین MWT:\n${message}\n\nلطفاً پاسخ دهید.`);
+                    
+                    // Simulate reply after 1 second
+                    setTimeout(() => {
+                        const replyElement = document.createElement('div');
+                        replyElement.className = 'message received';
+                        replyElement.innerHTML = '<p>پیام شما دریافت شد. همکاران ما به زودی با شما تماس خواهند گرفت.</p>';
+                        chatMessages.appendChild(replyElement);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                } catch (error) {
+                    console.error('Error sending chat message:', error);
+                    const errorElement = document.createElement('div');
+                    errorElement.className = 'message received';
+                    errorElement.innerHTML = '<p>خطا در ارسال پیام. لطفاً از طریق واتس‌اپ یا تلگرام با ما در ارتباط باشید.</p>';
+                    chatMessages.appendChild(errorElement);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }
+        }
+        
+        chatSend.addEventListener('click', sendMessage);
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Language switcher
+        const langFa = document.getElementById('lang-fa');
+        const langEn = document.getElementById('lang-en');
+        
+        // Persian translations
+        const persianTexts = {
+            title: "توانمندسازی سفر معاملاتی شما",
+            subtitle: "Empowering your trade journey",
+            founder: "بنیانگذار مفهوم MWT",
+            founderSubtitle: "founder of MWT concept",
+            aboutUsTitle: "درباره ما",
+            aboutUsDesc: "اطلاعات بیشتر درباره ما و تیم ما",
+            servicesTitle: "خدمات ما",
+            servicesDesc: "خدمات حرفه‌ای ما در زمینه ترید و تحلیل",
+            login: "ورود",
+            register: "ثبت نام",
+            support: "پشتیبانی",
+            contact: "ارتباط با ما",
+            chatTitle: "چت آنلاین با پشتیبانی",
+            chatPlaceholder: "پیام خود را بنویسید...",
+            loginTitle: "ورود به حساب کاربری",
+            registerTitle: "ثبت نام جدید",
+            fullName: "نام کامل",
+            email: "ایمیل",
+            phone: "شماره تماس",
+            password: "رمز عبور",
+            confirmPassword: "تکرار رمز عبور",
+            motivationalText1: "در دنیای پر از نوسان و فرصت‌های بی‌پایان بازارهای مالی، موفقیت تنها از آن کسانی است که جرئت می‌کنند قدم اول را بردارند، پشتکار دارند و همواره در مسیر یادگیری و رشد هستند. ترید کردن، هنر تحلیل و تصمیم‌گیری در لحظه‌های حساس است که می‌تواند زندگی شما را متحول کند.",
+            motivationalText2: "ما در کنار تحلیل تکنیکال و فاندامنتال، از قدرت استرولوژی مالی نیز بهره می‌بریم؛ دانشی که با بررسی موقعیت سیارات و تأثیرات آن‌ها بر احساسات جمعی بازار، به ما دیدگاهی عمیق‌تر و زمان‌بندی دقیق‌تری برای ورود و خروج می‌دهد. این ترکیب هوشمندانه از علم و هنر، می‌تواند شما را چند قدم جلوتر از بازار نگه دارد.",
+            motivationalText3: "امروز زمان آن است که ترس‌ها را کنار بگذارید و به سمت آینده‌ای روشن‌تر حرکت کنید. با ما، آموزش ترید اسکلپی و روندی را به‌همراه نگاهی متفاوت از جنس کیهان تجربه می‌کنید."
+        };
+        
+        // English translations
+        const englishTexts = {
+            title: "Empowering your trade journey",
+            subtitle: "Empowering your trade journey",
+            founder: "Founder of MWT concept",
+            founderSubtitle: "Founder of MWT concept",
+            aboutUsTitle: "About Us",
+            aboutUsDesc: "More information about us and our team",
+            servicesTitle: "Our Services",
+            servicesDesc: "Our professional trading and analysis services",
+            login: "Login",
+            register: "Register",
+            support: "Support",
+            contact: "Contact Us",
+            chatTitle: "Online Support Chat",
+            chatPlaceholder: "Type your message...",
+            loginTitle: "Login to your account",
+            registerTitle: "New Registration",
+            fullName: "Full Name",
+            email: "Email",
+            phone: "Phone Number",
+            password: "Password",
+            confirmPassword: "Confirm Password",
+            motivationalText1: "In the volatile world of financial markets with endless opportunities, success belongs only to those who dare to take the first step, persevere, and are constantly on the path of learning and growth. Trading is the art of analysis and decision-making in critical moments that can transform your life.",
+            motivationalText2: "Alongside technical and fundamental analysis, we utilize the power of financial astrology; a knowledge that by examining planetary positions and their effects on market collective emotions, gives us a deeper perspective and more precise timing for entry and exit. This intelligent combination of science and art can keep you several steps ahead of the market.",
+            motivationalText3: "Today is the time to put aside fears and move toward a brighter future. With us, you'll experience scalping and trend trading education along with a unique cosmic perspective."
+        };
+        
+        langFa.addEventListener('click', () => {
+            document.body.classList.remove('english');
+            document.documentElement.lang = 'fa';
+            document.documentElement.dir = 'rtl';
+            
+            // Update all texts to Persian
+            document.querySelector('.title').textContent = persianTexts.title;
+            document.querySelector('.subtitle').textContent = persianTexts.subtitle;
+            document.querySelector('.founder').textContent = persianTexts.founder;
+            document.querySelectorAll('.subtitle')[1].textContent = persianTexts.founderSubtitle;
+            document.querySelectorAll('.service-title')[0].textContent = persianTexts.aboutUsTitle;
+            document.querySelectorAll('.service-title')[1].textContent = persianTexts.servicesTitle;
+            document.querySelectorAll('.service-card p')[0].textContent = persianTexts.aboutUsDesc;
+            document.querySelectorAll('.service-card p')[1].textContent = persianTexts.servicesDesc;
+            document.querySelector('.login-btn').textContent = persianTexts.login;
+            document.querySelector('.register-btn').textContent = persianTexts.register;
+            document.querySelectorAll('.accordion-header span')[0].textContent = persianTexts.support;
+            document.querySelectorAll('.accordion-header span')[1].textContent = persianTexts.contact;
+            document.querySelector('.chat-header span').textContent = persianTexts.chatTitle;
+            document.querySelector('.chat-input').placeholder = persianTexts.chatPlaceholder;
+            document.querySelector('#login-modal h2').textContent = persianTexts.loginTitle;
+            document.querySelector('#register-modal h2').textContent = persianTexts.registerTitle;
+            document.querySelector('label[for="reg-name"]').textContent = persianTexts.fullName;
+            document.querySelector('label[for="reg-email"]').textContent = persianTexts.email;
+            document.querySelector('label[for="reg-phone"]').textContent = persianTexts.phone;
+            document.querySelector('label[for="reg-password"]').textContent = persianTexts.password;
+            document.querySelector('label[for="reg-confirm"]').textContent = persianTexts.confirmPassword;
+            document.querySelector('label[for="login-email"]').textContent = persianTexts.email;
+            document.querySelector('label[for="login-password"]').textContent = persianTexts.password;
+            document.getElementById('motivational-text-1').textContent = persianTexts.motivationalText1;
+            document.getElementById('motivational-text-2').textContent = persianTexts.motivationalText2;
+            document.getElementById('motivational-text-3').textContent = persianTexts.motivationalText3;
+        });
+        
+        langEn.addEventListener('click', () => {
+            document.body.classList.add('english');
+            document.documentElement.lang = 'en';
+            document.documentElement.dir = 'ltr';
+            
+            // Update all texts to English
+            document.querySelector('.title').textContent = englishTexts.title;
+            document.querySelector('.subtitle').textContent = englishTexts.subtitle;
+            document.querySelector('.founder').textContent = englishTexts.founder;
+            document.querySelectorAll('.subtitle')[1].textContent = englishTexts.founderSubtitle;
+            document.querySelectorAll('.service-title')[0].textContent = englishTexts.aboutUsTitle;
+            document.querySelectorAll('.service-title')[1].textContent = englishTexts.servicesTitle;
+            document.querySelectorAll('.service-card p')[0].textContent = englishTexts.aboutUsDesc;
+            document.querySelectorAll('.service-card p')[1].textContent = englishTexts.servicesDesc;
+            document.querySelector('.login-btn').textContent = englishTexts.login;
+            document.querySelector('.register-btn').textContent = englishTexts.register;
+            document.querySelectorAll('.accordion-header span')[0].textContent = englishTexts.support;
+            document.querySelectorAll('.accordion-header span')[1].textContent = englishTexts.contact;
+            document.querySelector('.chat-header span').textContent = englishTexts.chatTitle;
+            document.querySelector('.chat-input').placeholder = englishTexts.chatPlaceholder;
+            document.querySelector('#login-modal h2').textContent = englishTexts.loginTitle;
+            document.querySelector('#register-modal h2').textContent = englishTexts.registerTitle;
+            document.querySelector('label[for="reg-name"]').textContent = englishTexts.fullName;
+            document.querySelector('label[for="reg-email"]').textContent = englishTexts.email;
+            document.querySelector('label[for="reg-phone"]').textContent = englishTexts.phone;
+            document.querySelector('label[for="reg-password"]').textContent = englishTexts.password;
+            document.querySelector('label[for="reg-confirm"]').textContent = englishTexts.confirmPassword;
+            document.querySelector('label[for="login-email"]').textContent = englishTexts.email;
+            document.querySelector('label[for="login-password"]').textContent = englishTexts.password;
+            document.getElementById('motivational-text-1').textContent = englishTexts.motivationalText1;
+            document.getElementById('motivational-text-2').textContent = englishTexts.motivationalText2;
+            document.getElementById('motivational-text-3').textContent = englishTexts.motivationalText3;
+        });
+        
+        // Protect services for logged-in users only
+        const serviceCards = document.querySelectorAll('.service-card');
+        let isLoggedIn = false;
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (card.id === 'our-services' && !isLoggedIn) {
+                    alert('برای دسترسی به بخش خدمات، لطفاً ابتدا ثبت نام یا ورود کنید.');
+                    registerModal.style.display = 'flex';
+                } else if (card.id === 'about-us') {
+                    // In a real scenario, this would navigate to the about page
+                    alert('در حال انتقال به صفحه درباره ما');
+                } else {
+                    // In a real scenario, this would navigate to the services page
+                    alert('در حال انتقال به صفحه خدمات');
+                }
+            });
+        });
+        
+        // Initialize with Persian language
+        langFa.click();
+    </script>
+</body>
+</html>
